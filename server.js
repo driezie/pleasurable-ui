@@ -96,7 +96,7 @@ app.post('/', async (req, res) => {
 
       if (!removeResponse.ok) {
         console.error('Failed to remove playlist from favorites');
-        return res.status(500).send('Failed to remove playlist from favorites');
+        return ('/');
       }
     } else {
       console.error('isLikedId is missing');
