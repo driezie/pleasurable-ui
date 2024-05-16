@@ -22,28 +22,28 @@
             </a>
             <div class="additional-actions">
                 <form action="/" method="POST">
+                  <!-- 
+                    Maakt een hidden input aan met de id van het item
+                    Door dit te gebruiken kan ik de data van de playlist doorsturen naar de back-end
+                  -->
+                  <input type="hidden" name="isLiked" value="<%= item.isLiked %>">
+                  <input type="hidden" name="isLikedId" value="<%= item.isLikedId %>">
+                  <input type="hidden" name="itemId" value="<%= item.id %>">
+                  <button type="submit" data-ifLiked="<%= item.isLiked %>">
                     <!-- 
-                        Maakt een hidden input aan met de id van het item
-                        Door dit te gebruiken kan ik de data van de playlist doorsturen naar de back-end
-                     -->
-                     <input type="hidden" name="isLiked" value="<%= item.isLiked %>">
-                     <input type="hidden" name="isLikedId" value="<%= item.isLikedId %>">
-                     <!-- Deze moet volgensmij bewerkt worden -->
-                    <input type="hidden" name="itemId" value="<%= item.id %>">
-                    <button type="submit" data-ifLiked="<%= item.isLiked %>">
-                        <!-- 
-                            Checkt of het item in de favourites array zit
-                            Als dat zo is dan laat hij een gevulde hartje zien
-                            Zo niet dan laat hij een leeg hartje zien
-                         -->
-                         <% if (item.isLiked) { %>
-                            <img src="/svg/heart-filled.svg" alt="like filled heart icon" height="24" width="24">
-                        <% } else { %>
-                            <img src="/svg/heart.svg" alt="like heart icon" height="24" width="24">
-                        <% } %>
-                    </button>
+                      Checkt of het item in de favourites array zit
+                      Als dat zo is dan laat hij een gevulde hartje zien
+                      Zo niet dan laat hij een leeg hartje zien
+                    -->
+                    <% if (item.isLiked) { %>
+                      <img src="/svg/heart-filled.svg" alt="like filled heart icon" height="24" width="24">
+                    <% } else { %>
+                      <img src="/svg/heart.svg" alt="like heart icon" height="24" width="24">
+                    <% } %>
+                  </button>
                 </form>
-            </div>
+              </div>
+              
         </div>
     </div>
 </div>
