@@ -222,6 +222,17 @@ img {
   }
 }
 
+.heart-button:hover {
+  animation: like 0.5s forwards;
+
+}
+
+/* keyframes */
+@-webkit-keyframes like {
+  0%   { transform: scale(1); }
+  90%   { transform: scale(1.2); }
+  100% { transform: scale(1.1); }
+}
 
 /* Media 1200 */
 
