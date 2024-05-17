@@ -20,19 +20,15 @@
   <body>
     <div class="nav-container" id="top">
       <nav>
-        <div class="profile">
+        <section class="profile">
           <img src="/images/profile-image.png" alt="profile picture" />
           <h2>Jelte</h2>
           <a href="" title="settings">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
+            <svg width="20" height="20" viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path
-                d="M10.0001 12.5C11.3808 12.5 12.5001 11.3807 12.5001 10C12.5001 8.61929 11.3808 7.5 10.0001 7.5C8.61937 7.5 7.50008 8.61929 7.50008 10C7.50008 11.3807 8.61937 12.5 10.0001 12.5Z"
+              <path d="M10.0001 12.5C11.3808 12.5 12.5001 11.3807 12.5001 10C12.5001 8.61929 11.3808 7.5 10.0001 7.5C8.61937 7.5 7.50008 8.61929 7.50008 10C7.50008 11.3807 8.61937 12.5 10.0001 12.5Z"
                 stroke="white"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -45,7 +41,7 @@
               />
             </svg>
           </a>
-        </div>
+        </section>
 
         <div class="buttons">
           <a href="/" class="button" title="listening">
@@ -134,21 +130,14 @@
     <div class="container">
       <div class="info-content">
         <div class="avatar">
-          <img src="/images/pingiun.png" alt="" />
+          <img src="/images/pingiun.png" alt="pinguin" />
         </div>
       </div>
 
       <div class="dashboard">
-        <!-- <div class="content-title">
-            <h1>
-                Lessons with Listening
-            </h1>
-            <h2>
-                Hello Jelte, what do you want to learn today?
-            </h2>
-        </div> -->
         <div class="content">
-          <div class="playlists">
+          <div id="message-container" class="hidden"></div>
+          <section class="playlists">
             <% if (liked_playlists.length > 0) { %>
             <h2>Liked playlists</h2>
             <div class="card-grid card-grid-3">
@@ -164,9 +153,10 @@
                 include('./components/playlist-card',{item: item}) %> <% }) %>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </div>
+    <script src="TumiMundo.js"></script>
   </body>
 </html>
