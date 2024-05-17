@@ -1,0 +1,40 @@
+<%- include('./partials/head') %>
+
+<div class="full--detail">
+    <a id="goback" href="/"> ☇ <span>Terug naar home</span> </a>
+    <section class="detail--text-image">
+        <picture>
+            <source srcset="https://fdnd-agency.directus.app/assets/<%= items.afbeelding %>?&format=webp" type="image/webp">
+            <img loading="lazy" src="https://fdnd-agency.directus.app/assets/<%= items.afbeelding %>" alt="">
+        </picture>
+        <article>
+            <h1> <%= items.title %></h1>    
+            <ul class="text-image--category">
+                <li><%= items.language %></li>
+                <li><%= items.characteristics %></li>
+                <li><%= items.auteur %></li>
+            </ul>
+            <p> <%- items.description %> </p>
+            <div>
+                <a class="link link-primary">Item huren</a>
+                
+                <form action="/detail/<%= items.id %>" method="POST" id="myForm">
+                    <input type="hidden" name="carousel" value="<%= items.id %>">
+                    <button id="submitButton" class="link link-secondary" type="submit"> Toevoegen aan mijn lijst <i class='bx bxs-bookmark'></i></button>
+                </form>
+                
+            </div>
+            <ul class="text-image--details">
+                <li><%= items.genre %></li>
+                <li><%= items.publisher %></li>
+                <li><%= items.ISBN %></li>
+                <li><%= items.pica_number %></li>
+                <li><%= items.editie %></li>
+                <li><%= items.datetime %></li>
+                <li><%= items.price %></li>
+                <li><%= items.location %></li>
+            </ul>
+        </article>
+    </section>
+
+    <%- include('./partials/foot') %>

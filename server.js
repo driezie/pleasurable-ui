@@ -33,6 +33,42 @@ app.get('/', function (request, response) {
     })
 })
 
+app.get('/detail/:id', function(request, response){
+    // console.log(request.params)
+    const itemId = request.params.id;
+
+     // Haal de details op van het item met het opgegeven ID
+     fetchJson(apiUrl + '/oba_item/' + itemId).then((items) => {
+        // Render de detailpagina en geef de nodige data mee
+        response.render('detail', {
+            items: items.data,
+            id: itemId,
+        });
+    });
+});
+
+app.post('/detail/:id', function(request, response){
+
+    const itemId = request.params.id;
+  
+    fetch(`${apiUrl}/oba_bookmarks/` , {
+        method: 'POST',
+        body: JSON.stringify({
+          item: request.params.id
+        }),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        }
+      }).then((postResponse) => {
+        // Redirect naar de persoon pagina
+        if (request.body.enhanced) {
+            response.render('detail', {added:true});
+          } else {
+          response.redirect(303, '/detail/' + itemId + '?added=true')
+      }
+    })
+  });
+
 // Stel het poortnummer in waar express op moet gaan luisteren
 app.set('port', process.env.PORT || 8001)
 
