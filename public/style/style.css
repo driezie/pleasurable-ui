@@ -136,7 +136,7 @@ img {
   border-radius: 8px;
   background-color: #fff;
 
-  picture {
+  picture.logo {
     width: 100%;
     height: 100%;
     background-color: #5AB4F5;

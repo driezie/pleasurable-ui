@@ -1,5 +1,5 @@
 <div class="card card-playlist">
-  <picture>
+  <picture class="logo">
       <source srcset="https://fdnd-agency.directus.app/assets/<%= item.image?.id %>?format=avif" type="image/avif">
       <source srcset="https://fdnd-agency.directus.app/assets/<%= item.image?.id %>?format=webp" type="image/webp">
       <img class="logo" loading="lazy" src="https://fdnd-agency.directus.app/assets/<%= item.image?.id %>" alt="<%= item.title %>" height="164" width="<%= item.image?.width %>">
@@ -11,7 +11,12 @@
       </div>
       <div class="actions">
           <a href="<%= item.slug %>" class="play">
-              <img src="images/play-button.png" alt="play button" height="40" width="40">
+            <picture>
+                <source srcset="https://fdnd-agency.directus.app/assets/4554daf3-4287-4959-9cd0-c13487d2f51f.png?format=avif" type="image/avif">
+                <source srcset="https://fdnd-agency.directus.app/assets/4554daf3-4287-4959-9cd0-c13487d2f51f.png?format=webp" type="image/webp">
+                <img src="https://fdnd-agency.directus.app/assets/4554daf3-4287-4959-9cd0-c13487d2f51f.png" alt="play button" height="40" width="40">
+            </picture>
+              
               <span>
                   <!-- 
                       Hierin staat het aantal stories van een playlist
@@ -37,9 +42,9 @@
                           Zo niet dan laat hij een leeg hartje zien
                        -->
                        <% if (item.isLiked) { %>
-                          <img src="/svg/heart-filled.svg" alt="like filled heart icon" height="24" width="24">
+                          <img src="https://fdnd-agency.directus.app/assets/2dbfa622-6297-4d51-a0bc-7d9fde10c5f1.svg" alt="like filled heart icon" height="24" width="24">
                       <% } else { %>
-                          <img src="/svg/heart.svg" alt="like heart icon" height="24" width="24">
+                          <img src="https://fdnd-agency.directus.app/assets/30d087ab-c748-4c3e-bbe1-b37c1df71901.svg" alt="like heart icon" height="24" width="24">
                       <% } %>
                   </button>
               </form>
