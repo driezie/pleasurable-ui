@@ -135,91 +135,109 @@ img {
   padding: 8px;
   border-radius: 8px;
   background-color: #fff;
+}
 
-  picture.logo {
-    width: 100%;
-    height: 100%;
-    background-color: #5AB4F5;
-    max-height: 164px;
-    overflow: hidden;
-    border-radius: 4px;
-  }
+.card picture.logo {
+  width: 100%;
+  height: 100%;
+  background-color: #5AB4F5;
+  max-height: 164px;
+  overflow: hidden;
+  border-radius: 4px;
+}
 
-  img.logo, source {
-    /* center */
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    object-fit: cover;
-    position: relative;
-  }
+.card img.logo, source {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+  position: relative;
+}
 
-  .text-content {
-    flex-grow: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.card .text-content {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-    .title-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-
-      h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin: 10px 0;
-      }
-    }
-
-    p {
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-    }
-  }
-  .actions {
-    display: flex;
+.card .text-content .title-content {
+  display: flex;
     justify-content: space-between;
     align-items: center;
-    .play {
-      gap: 5px;
-      display: flex;
-      align-items: center;
-      
+    margin-bottom: 10px;
+}
 
-      img {
-        width: 40px;
-        height: 40px;
-        margin-right: 5px;
-      }
-    }
+.card .text-content .title-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 10px 0;
+}
 
-    .additional-actions {
-      display: flex;
-      align-items: center;
+.card .text-content .title-content p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
 
-      a {
-        display: flex;
-        margin: 0 5px;
 
-        img {
-          width: 20px;
-          height: 20px;
-        }
-      }
 
-      button {
-        display: flex;
-        cursor: pointer;
-        border: none;
-        background: transparent;
-      }
-    }
-  }
+.card .actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.card .actions .play {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.card .actions .play img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+  
+.card .actions .additional-actions {
+  display: flex;
+  align-items: center;
+}
+
+.card .actions .additional-actions a {
+  display: flex;
+  margin: 0 5px;
+}
+
+.card .actions .additional-actions a img {
+  width: 20px;
+  height: 20px;
+}
+
+.card .actions .additional-actions button {
+  padding: .7rem;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+
+  
+  
+
+
+.card.card-playlist:hover .play img {
+  scale: 1.05;
+  transition: all 0.3s;
+}
+
+.card.card-playlist .play img {
+  transition: all 0.3s;
 }
 
 
@@ -267,7 +285,31 @@ img {
 
 @media (max-width: 468px) {
   .card-grid {
-
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.dashboard:has(form.loading) form {
+  display: none;
+}
+
+form.loading{
+  display: flex !important;
+}
+
+form.loading button {
+  animation: like-button-animation .7s cubic-bezier(0.075, 0.82, 0.165, 1);
+  cursor: wait !important;
+}
+
+@keyframes like-button-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
   }
 }

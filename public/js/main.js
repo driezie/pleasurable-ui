@@ -1,5 +1,4 @@
 
-
 async function toggleFavoriteClient(itemId, isLiked, isLikedId, apiUrl) {
   const url = isLiked ? `${apiUrl}/tm_likes/${isLikedId}` : `${apiUrl}/tm_likes`;
   const method = isLiked ? 'DELETE' : 'POST';
@@ -50,6 +49,7 @@ function updateFavorites() {
           return fetch('/')
             .then(response => response.text())
             .then(updatedHtml => {
+              console.log('Updated HTML');
               if (document.startViewTransition) {
                 document.startViewTransition(() => {
                   document.body.innerHTML = updatedHtml;
@@ -57,6 +57,7 @@ function updateFavorites() {
               } else {
                 document.body.innerHTML = updatedHtml;
               }
+
             });
         });
     })
@@ -65,27 +66,30 @@ function updateFavorites() {
     });
 }
 
-const forms = document.querySelectorAll('form');
+document.body.addEventListener('submit', formHandler)
 
-forms.forEach((form) => {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    console.log('Form submitted using javascript for the function');
+function formHandler(e) {
+  e.target.classList.add('loading');
+  e.target.querySelector('button').setAttribute('disabled', 'disabled');
+  console.log('Form submitted using javascript for the function');
 
-    const formData = new FormData(form);
-    const itemId = formData.get('itemId');
-    const isLiked = formData.get('isLiked') === 'true'; // Assuming a boolean value is sent
-    const isLikedId = formData.get('isLikedId');
+  const formData = new FormData(e.target);
+  formData.append("enhanced", "true");
+  const itemId = formData.get('itemId');
+  const isLiked = formData.get('isLiked') === 'true'; // Assuming a boolean value is sent
+  const isLikedId = formData.get('isLikedId');
 
-    console.log('Submit check: ', itemId);
+  console.log('Submit check: ', itemId);
 
-    const apiUrl = 'https://fdnd-agency.directus.app/items';
+  const apiUrl = 'https://fdnd-agency.directus.app/items';
 
-    try {
-      await toggleFavoriteClient(itemId, isLiked, isLikedId, apiUrl); // Call toggleFavoriteClient here
-      updateFavorites(); // Update favorites after toggling
-    } catch (error) {
-      console.error(error);
-    }
-  });
-});
+  
+
+  try {
+    toggleFavoriteClient(itemId, isLiked, isLikedId, apiUrl); // Call toggleFavoriteClient here
+    updateFavorites(); // Update favorites after toggling
+  } catch (error) {
+    console.error(error);
+  }
+  e.preventDefault();
+}
