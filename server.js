@@ -9,20 +9,18 @@ import { checkIfLiked } from './helpers/likeChecker.js';
 // Maak een nieuwe express app aan
 const app = express();
 
-// Stel ejs in als template engine
-app.set('view engine', 'ejs');
-
-// Stel de map met ejs templates in
-app.set('views', './views');
-
-// Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
-app.use(express.static('public'));
-
-// Zorg dat werken met request data makkelijker wordt
-app.use(express.urlencoded({ extended: true }));
-
 // API naar Directus
 const apiUrl = "https://fdnd-agency.directus.app/items";
+
+// Stel ejs in als template engine
+// Stel de map met ejs templates in
+// Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
+// Zorg dat werken met request data makkelijker wordt
+app.set('view engine', 'ejs');
+app.set('views', './views');
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', async (request, response) => {
   const playlistsAPI = `${apiUrl}/tm_playlist?fields=*.*.*.*`;
   const playlistsResponse = await makeFetchRequest(playlistsAPI, 'GET');
@@ -34,7 +32,6 @@ app.get('/', async (request, response) => {
 
   const likedAPI = `${apiUrl}/tm_likes?filter={"user":"4"}`;
   const likedPlaylistsResponse = await makeFetchRequest(likedAPI, 'GET');
-  console.log(likedPlaylistsResponse); // Log the response
   if (!likedPlaylistsResponse || typeof likedPlaylistsResponse.json !== 'function') {
     throw new Error('Invalid response object');
   }
@@ -59,8 +56,6 @@ app.post('/', async (req, res) => {
   const itemId = req.body.itemId;
   const isLiked = req.body.isLiked === 'true'; // Convert to boolean
   const isLikedId = req.body.isLikedId;
-
-  console.log(`Post request received with: ${itemId} and ${isLiked} and ${isLikedId}`);
 
   // Toggle the favorite status
   await toggleFavorite(itemId, isLiked, isLikedId, apiUrl);
@@ -92,7 +87,6 @@ app.post('/', async (req, res) => {
     liked_playlists: likedPlaylistsOnly || [],
   });
 });
-
 
 // Stel het poortnummer in waar express op moet gaan luisteren
 app.set('port', process.env.PORT || 8000);
