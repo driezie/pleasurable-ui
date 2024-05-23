@@ -271,6 +271,7 @@ img {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
 .sorting{
 margin-top: 1rem;
 margin-bottom: 1rem;
