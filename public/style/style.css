@@ -315,11 +315,11 @@ img {
   margin:0.5rem;
 }
 
-.playlistsButton:hover, .storiesButton:hover {
-cursor: pointer;
+.playlistsButton:hover, .storiesButton:hover, .active {
+  cursor: pointer;
   background-color: white;
   color:#325072 ;
- transform: scale(1.06);
+  transform: scale(1.06);
 }
 
 .heart-button:hover {
