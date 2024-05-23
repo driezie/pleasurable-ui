@@ -246,7 +246,7 @@ img {
 
 .li-story {
   background-color: var(--lessons-story-box);
-  width:20.3rem;
+  width:23.3rem;
   height: 8.5rem ;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -268,15 +268,34 @@ img {
     margin-left:0.8rem;
 }
 
+.li-story:hover {
+  background-color:#ededf3db;
+  cursor:pointerA
+  /* Add gradient */
+}
+
 .summaryStory {
   font-size: 0.9rem;
-  width: 15rem;
+  width: 20rem;
   max-width: 18rem;
   position:relative;
   bottom:2rem;
   margin-left:0.8rem;
 
 }
+
+.interactions-story {
+  position:relative;
+  top:2.5rem;
+  left:13.5rem;
+
+}
+
+.btn-add {
+  background-color:transparent;
+  border:none;
+}
+
 
 /* Grid story */
 .li-story .img-story {
