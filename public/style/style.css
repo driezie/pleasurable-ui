@@ -2,6 +2,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+    /* color */
+    --lessons-h1-color: #FFFFFF;
+    --lessons-listening-box-color:#139943;
+    --lessons-story-box:#FFFFFF;
+    --lessons-dark-text-color:#000000;
+
+  
+    /* paddding/layout */
+    --lessons-story-box-width:22.9rem;;
+    --border-radius-standard:0.5rem;
+}
 
 body {
     margin: 0;
@@ -222,6 +234,94 @@ img {
   }
 }
 
+/* Stories */
+
+.list-stories  {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--border-radius-standard);
+    color: var(--lessons-dark-text-color);
+}
+
+
+.li-story {
+  background-color: var(--lessons-story-box);
+  width:20.3rem;
+  height: 8.5rem ;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  
+}
+
+.img-story {
+  height: 5rem;
+  width: 5rem;
+  object-fit: cover;
+  margin:1rem 0.5rem
+  
+}
+
+.title-story{
+  white-space: nowrap;
+  position:relative;
+    margin-left:0.8rem;
+}
+
+.summaryStory {
+  font-size: 0.9rem;
+  width: 15rem;
+  max-width: 18rem;
+  position:relative;
+  bottom:2rem;
+  margin-left:0.8rem;
+
+}
+
+/* Grid story */
+.li-story .img-story {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.li-story .title-story {
+  grid-column: 2 / 3;
+    grid-row: 1;
+} 
+
+.li-story .summaryStory {
+    grid-column: 2 / 3 ;
+    grid-row: 2;
+}
+
+  .li-story .interactions-story {
+    grid-column: 2 / 3;
+    grid-row: 2;
+  }
+
+.hidden {
+  visibility: hidden;
+}
+/* buttons */
+.storiesButton, .playlistsButton  {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  background-color:#325072;
+  color:white;
+   transition: transform 0.3s ease;
+}
+.placeholder-buttons {
+  margin:0.5rem;
+}
+
+.playlistsButton:hover, .storiesButton:hover {
+cursor: pointer;
+  background-color: white;
+  color:#325072 ;
+ transform: scale(1.06);
+}
+
 .heart-button:hover {
   animation: like 0.5s forwards;
 
@@ -234,6 +334,7 @@ img {
   100% { transform: scale(1.1); }
 }
 
+
 /* Media 1200 */
 
 @media (max-width: 1200px) {
@@ -244,6 +345,7 @@ img {
   .nav-container nav .buttons {
     display: none;
   }
+  
 
 }
 
@@ -269,16 +371,25 @@ img {
     gap: 12px;
     grid-template-columns: repeat(2, 1fr);
   }
+  
 
 .dashboard .content {
     overflow-y: auto;
 }
-}
 
+}
+@media (min-width: 768px) {
+  .list-stories  {
+    grid-template-columns: repeat(2, 2fr);
+    max-width:23rem;
+    
+  }
+}
 
 @media (max-width: 468px) {
   .card-grid {
 
     grid-template-columns: repeat(1, 1fr);
   }
+  
 }

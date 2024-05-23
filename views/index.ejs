@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style/navbar.css" />
-    <link rel="stylesheet" href="/style/style.css" />
-   
-
-    <title>Home</title>
-    <meta content="Home" name="description" />
-    <meta property="og:title" content="" />
-    <meta property="og:site_name" content="Home" />
-    <meta property="og:description" content="Home" />
-    <meta property="og:image" content="Home" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image" href="Home" />
-
-  </head>
+<%- include('partials/head') %>
   <body>
     <div class="nav-container" id="top">
       <nav>
@@ -163,11 +145,46 @@
                 <% playlists.forEach(item => { %> <%-
                 include('./components/playlist-card',{item: item}) %> <% }) %>
               </div>
+              
+              <section class="placeholder-buttons">
+                <button class="storiesButton">stories</button>
+                <button class="playlistsButton"> playlists </button>
+              </section>
+
+              <section class="list-stories">
+                <% stories.forEach(story => {%>
+                  <article class="li-story">
+                    <h1 class="title-story"><%= story.title %> </h1>
+                    <img class="img-story" src="https://fdnd-agency.directus.app/assets/<%= story.image %>" alt="story image">
+                    <p class="summaryStory "> 
+                      <%= story.summary %>
+                    </p>
+
+                    <section>
+                      <div class="interactions-story">
+                        <img class="icon-playbutton" src="/images/icons/play-button.svg" alt="play button icon">
+                        <img class="icon-download" src="/images/icons/cloud-download-outline.svg" alt="download icon">
+                        <button class="btn-add">
+                            <img class="icon-add" src="/images/icons/106230_add_icon.svg" alt="add button">
+                        </button>
+                        
+                    </div>
+                    </section>
+                  </article>
+                
+                    
+                <% });  %>
+              </section>
+              <section class="list-playlists">
+
+              </section>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
-    <script src="main.js"></script>
+   
   </body>
 </html>
+

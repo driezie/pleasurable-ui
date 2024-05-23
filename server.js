@@ -22,6 +22,8 @@ app.use(express.urlencoded({extended: true}))
 
 // API naar Directus
 const apiUrl = "https://fdnd-agency.directus.app/items";
+const storiesAPI = await fetchJson('https://fdnd-agency.directus.app/items/tm_story');
+
 
 // Array voor favourieten
 const playlistsWithLikedStatus = [];
@@ -41,15 +43,30 @@ function checkIfLiked(playlist, array) {
   };
 }
 
+let stories = storiesAPI.data;
+
+//home
+app.get('/home', function(request, response) {
+  // Render index.ejs uit de views map
+  response.render('home', {
+ 
+    stories: stories
+
+    });
+  })
+
 
 app.get('/', async (request, response) => {
   //? Hier moet ik de code aanpassen zodat de liked id 
   //? opgehaald wordt via de playlists als dat kan
   // Fetch alle playlists
   const playlistsAPI = `${apiUrl}/tm_playlist?fields=*.*.*.*`;
+
   const playlistsResponse = await fetch(playlistsAPI);
   const playlistsData = await playlistsResponse.json();
   const playlists = playlistsData.data;
+
+
 
   // Fetcht alle gelikede playlists van de gebruiker
   const likedAPI = `${apiUrl}/tm_likes?filter={"user":"4"}`;
@@ -69,10 +86,15 @@ app.get('/', async (request, response) => {
   // Render de homepagina met de data
   response.render('index', {
       apiUrl: apiUrl,
+      stories: stories,
       playlists: playlistsWithLikedStatus || [],
       liked_playlists: likedPlaylistsOnly || [],
+      
   });
+
 });
+
+
 
 // POST-functie voor het leuk vinden van een afspeellijst
 app.post('/', async (req, res) => {
