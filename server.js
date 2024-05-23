@@ -146,10 +146,10 @@ app.post('/', async (req, res) => {
   });
 });
 
-// Maak een GET route voor de stories
+/// Maak een GET route voor de stories
 app.get('/stories', async function (request, response) {
-  const storiesData = `${apiUrl}/tm_story`;
-  const filteredStories = storiesData.data; // Initialize filteredStories met alle verhalen
+  const storiesData = await fetchJson('https://fdnd-agency.directus.app/items/tm_story');
+  let filteredStories = storiesData.data; // Initialize filteredStories met alle verhalen
 
   // Controleer als er een search query in de request is
   if (request.query.search) {
