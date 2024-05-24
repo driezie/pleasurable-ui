@@ -22,6 +22,8 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', async (request, response) => {
+
+  // Haal alle 'normale' afspeellijsten op
   const playlistsAPI = `${apiUrl}/tm_playlist?fields=*.*.*.*`;
   const playlistsResponse = await makeFetchRequest(playlistsAPI, 'GET');
   if (!playlistsResponse || typeof playlistsResponse.json !== 'function') {
@@ -30,6 +32,7 @@ app.get('/', async (request, response) => {
   const playlistsData = await playlistsResponse.json();
   const playlists = playlistsData.data;
 
+  // Haal alle gelikede afspeellijsten op
   const likedAPI = `${apiUrl}/tm_likes?filter={"user":"4"}`;
   const likedPlaylistsResponse = await makeFetchRequest(likedAPI, 'GET');
   if (!likedPlaylistsResponse || typeof likedPlaylistsResponse.json !== 'function') {
@@ -38,18 +41,22 @@ app.get('/', async (request, response) => {
   const likedPlaylistsData = await likedPlaylistsResponse.json();
   const likedPlaylists = likedPlaylistsData.data;
 
+  // Voeg de isLiked-status toe aan elke afspeellijst
   const playlistsWithLikedStatus = playlists.map(playlist => {
     return checkIfLiked(playlist, likedPlaylists);
   });
 
+  // Filter alleen de gelikede afspeellijsten
   const likedPlaylistsOnly = playlistsWithLikedStatus.filter(playlist => playlist.isLiked);
 
+  // Rendert de homepagina met alleen de gelikede afspeellijsten
   response.render('index', {
     apiUrl: apiUrl,
     playlists: playlistsWithLikedStatus || [],
     liked_playlists: likedPlaylistsOnly || [],
   });
 });
+
 
 app.post('/', async (req, res) => {
   // Ontvang het item id
