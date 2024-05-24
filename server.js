@@ -3,22 +3,21 @@ import express from 'express'
 
 // Importeer de zelfgemaakte functie fetchJson uit de ./helpers map
 import fetchJson from './helpers/fetch-json.js'
-// import checkIfLiked from './helpers/check-if-liked.js'
 
 // Maak een nieuwe express app aan
-const app = express()
+const app = express();
 
 // Stel ejs in als template engine
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 // Stel de map met ejs templates in
-app.set('views', './views')
+app.set('views', './views');
 
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 // Zorg dat werken met request data makkelijker wordt
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
 
 // API naar Directus
 const apiUrl = "https://fdnd-agency.directus.app/items";
@@ -29,9 +28,6 @@ const playlistsWithLikedStatus = [];
 function checkIfLiked(playlist, array) {
   // Checks if the playlist is in the liked playlists array
   const isLiked = array.some(likedPlaylist => likedPlaylist.playlist === playlist.id);
-  // Double check if the playlist is in the liked playlists array
-  // console.log("isLiked for " + playlist.id + " is: " + isLiked);
-
   // Adds an `isLiked` attribute to the playlist object
   return {
       ...playlist,
@@ -41,10 +37,7 @@ function checkIfLiked(playlist, array) {
   };
 }
 
-
 app.get('/', async (request, response) => {
-  //? Hier moet ik de code aanpassen zodat de liked id 
-  //? opgehaald wordt via de playlists als dat kan
   // Fetch alle playlists
   const playlistsAPI = `${apiUrl}/tm_playlist?fields=*.*.*.*`;
   const playlistsResponse = await fetch(playlistsAPI);
@@ -62,7 +55,6 @@ app.get('/', async (request, response) => {
       return checkIfLiked(playlist, likedPlaylists);
   });
 
-
   // Filter alleen de gelikede playlists
   const likedPlaylistsOnly = playlistsWithLikedStatus.filter(playlist => playlist.isLiked);
 
@@ -78,10 +70,10 @@ app.get('/', async (request, response) => {
 app.post('/', async (req, res) => {
   // Ontvang het item id
   const itemId = req.body.itemId;
-  const isLiked = req.body.isLiked;
+  const isLiked = req.body.isLiked === 'true'; // Ensure the value is boolean
   const isLikedId = req.body.isLikedId;
 
-  console.log("Post request received with: " + itemId + " and " + isLiked + " and " + isLikedId);
+  console.log("Post request received with:", itemId, isLiked, isLikedId);
 
   // Fetcht alle gelikede playlists van de gebruiker
   const likedAPI = `${apiUrl}/tm_likes?filter={"user":"4"}`;
@@ -89,34 +81,29 @@ app.post('/', async (req, res) => {
   const likedPlaylistsData = await likedPlaylistsResponse.json();
   const likedPlaylists = likedPlaylistsData.data;
 
-
   // Controleer of de afspeellijst al geliked is
-  //? Dit is de code waar ik hulp nodig mee heb
-  //? Error is no permissions, id is 2 maar hoort ongeveer 267 te zijn
-  //? Hoe krijg ik dan de juiste "liked" id van de liked playlist?
-  if (isLiked == true) {
+  if (isLiked) {
     console.log("Remove playlist from favorites");
-    // Als de afspeellijst al geliked is, verwijder deze dan
-    const removeUrl = `${apiUrl}/tm_likes/${isLikedId}`;
-    console.log("Remove url: ", removeUrl);
-    const removeResponse = await fetch(removeUrl, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
+    if (isLikedId) {
+      const removeUrl = `${apiUrl}/tm_likes/${isLikedId}`;
+      console.log("Remove url:", removeUrl);
+      const removeResponse = await fetch(removeUrl, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!removeResponse.ok) {
+        console.error('Failed to remove playlist from favorites');
+        return ('/');
       }
-    });
-
-
-
-    if (!removeResponse.ok) {
-      //! Geef een error als het niet lukt om de afspeellijst te verwijderen
-      throw new Error('Failed to remove playlist from favorites');
     } else {
-      console.log("Playlist removed from favorites");
+      console.error('isLikedId is missing');
+      return res.status(400).send('isLikedId is missing');
     }
   } else {
-    console.log("Add playlist from favorites");
-    // Als de afspeellijst niet geliked is, voeg deze dan toe
+    console.log("Add playlist to favorites");
     const addUrl = `${apiUrl}/tm_likes`;
     const addResponse = await fetch(addUrl, {
       method: 'POST',
@@ -127,10 +114,8 @@ app.post('/', async (req, res) => {
     });
 
     if (!addResponse.ok) {
-      //! Geef een error als het niet lukt om de afspeellijst toe te voegen aan de gelikede afspeellijsten
-      throw new Error('Failed to add playlist to favorites');
-    } else {
-      console.log("Added playlist")
+      console.error('Failed to add playlist to favorites');
+      return res.status(500).send('Failed to add playlist to favorites');
     }
   }
 
@@ -161,64 +146,32 @@ app.post('/', async (req, res) => {
   });
 });
 
+/// Maak een GET route voor de stories
+app.get('/stories', async function (request, response) {
+  const storiesData = await fetchJson('https://fdnd-agency.directus.app/items/tm_story');
+  let filteredStories = storiesData.data; // Initialize filteredStories met alle verhalen
 
-
-//? Tijdelijke code uitgezet
-app.get('/playlists', async (request, response) => {
-  // try {
-  //   const API =  `${apiUrl}/tm_playlist`;
-  //   const [data] = await Promise.all([
-  //     fetch(API).then(res => res.json()),
-  //   ]);
-  //   response.render('playlists', {
-  //     playlist: dataFinal.data,
-  //   });
-  // } catch (error) {
-  //   console.error(error);
-  //   response.status(500).send("Internal Server Error");
-  // }
+  // Controleer als er een search query in de request is
+  if (request.query.search) {
+      const searchTerm = request.query.search.toLowerCase(); // verander search query naar lowercase
+      filteredStories = filteredStories.filter(story =>
+          story.title.toLowerCase().includes(searchTerm) || // Search bij titel
+          story.summary.toLowerCase().includes(searchTerm) // Search bij samenvatting
+      );
+  }
+  // Render stories.ejs van de views map
+  response.render('stories', { stories: filteredStories });
 });
 
-// // Renderd de playlist pagina via de slug
-// app.get('/:slug', async (request, response) => {
-//   // try {
-//   //   const API = `${apiUrl}/tm_playlist?filter={"slug":"${request.params.slug}"}&fields=title,description,slug,stories.tm_story_id.title,stories.tm_story_id.summary,stories.tm_story_id.image,stories.tm_story_id.slug,language_id.language,language_id.flag.id`;
-//   //   const [data] = await Promise.all([
-//   //     fetch(API).then(res => res.json()),
-//   //   ]);
-//   //   response.render('playlist', {
-//   //     playlist: dataFinal.data[0],
-//   //     stories: dataFinal.data[0].stories || [],
-//   //     language: dataFinal.data[0].language_id || [],
-//   //   });
-//   // } catch (error) {
-//   //   console.error(error);
-//   //   response.status(500).send("Internal Server Error");
-//   // }
-// });
-
-// // Renderd de story pagina via de slug
-// app.get('/:playlistSlug/:storySlug', async (request, response) => {
-//   // try {
-//   //   const API = `${apiUrl}/tm_story?filter={"slug":"${request.params.storySlug}"}&fields=title,description,slug,image,video,playlist.tm_playlist_id.title,playlist.tm_playlist_id.slug, playlist.tm_playlist_id.description,`;
-//   //   const [data] = await Promise.all([
-//   //     fetch(API).then(res => res.json()),
-//   //   ]);
-//   //   response.render('story', {
-//   //     story: dataFinal.data[0],
-//   //   });
-//   // } catch (error) {
-//   //   console.error(error);
-//   //   response.status(500).send("Internal Server Error");
-//   // }
-// });
-
+//? Tijdelijke code uitgezet
+app.get('/playlists', async (request, response) => {});
 
 // Stel het poortnummer in waar express op moet gaan luisteren
-app.set('port', process.env.PORT || 8000)
+app.set('port', process.env.PORT || 8000);
 
 // Start express op, haal daarbij het zojuist ingestelde poortnummer op
 app.listen(app.get('port'), function() {
   // Toon een bericht in de console en geef het poortnummer door
-  console.log(`Application started on http://localhost:${app.get('port')}`)
-})
+  console.log(`Application started on http://localhost:${app.get('port')}`);
+});
+
