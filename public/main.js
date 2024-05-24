@@ -27,16 +27,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }); 
 
 
- // active state 
-    function toggleActiveButton(clickedButton, otherButton) {
-        //checken of er al een active state is 
-        if (!clickedButton.classList.contains('active')) {
-            // active state weghalen 
-            otherButton.classList.remove('active');
+//  // active state 
+    // function toggleActiveButton(clickedButton, otherButton) {
+    //     //checken of er al een active state is 
+    //     if (!clickedButton.classList.contains('active')) {
+    //         // active state weghalen 
+    //         otherButton.classList.remove('active');
             
-            // Active state toevoegen
-            clickedButton.classList.add('active');
-        }
+    //         // Active state toevoegen
+    //         clickedButton.classList.add('active');
+    //     }
 
     // stories laten zien 
     function showStories() {
@@ -48,4 +48,4 @@ document.addEventListener('DOMContentLoaded', function() {
         playlistsContent.classList.remove('hidden');
         storiesContent.classList.add('hidden');
     }
-}});
+});

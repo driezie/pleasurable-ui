@@ -251,6 +251,7 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  border-radius:0.3rem;
   
 }
 
@@ -270,8 +271,9 @@ img {
 
 .li-story:hover {
   background-color:#ededf3db;
-  cursor:pointerA
-  /* Add gradient */
+  cursor:pointer;
+
+  
 }
 
 .summaryStory {
