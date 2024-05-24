@@ -107,7 +107,7 @@ p{
 
 .link{
     padding: 13.42px 22px;
-    background-color: #fff;
+    background-color: var(--primary-color-light);
     border-radius: 4px;
     font-size: 1em;
     transition: ease-out 0.1s;
@@ -123,17 +123,22 @@ p{
   
   .link-primary{
     color: #000;
-    background-color: #fff;
+    background-color: var(--primary-color-light);
     &:hover{
-      color: #FF0000;
+      color: var(--primary-color);
     }
   }
 
   .link-secondary{
-    background-color: #FF0000;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--primary-color-light);
     &:hover{
-      color: #FF0000;
-      background-color: #fff;
+      color: var(--primary-color);
+      background-color: var(--primary-color-light);
     }
+  }
+
+  .add-class-button{
+    background-color: var(--primary-color-light);
+    color: var(--primary-color);
   }

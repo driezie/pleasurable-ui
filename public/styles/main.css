@@ -74,6 +74,6 @@
 
   body {
     font-family: "Poppins", sans-serif;
-    color: var(--body-color);
+    background-color: var(--body-color);
   }
 
