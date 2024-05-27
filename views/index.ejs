@@ -149,11 +149,8 @@
         </div> -->
         <div class="content">
           <div class="playlists">
-            <% if (liked_playlists.length > 0) { %>
               <h2>Liked playlists</h2>
               <%- include('./components/playlists',{playlist_feature: liked_playlists}) %>
-            <% } %>
-
             <h2>Playlists</h2>
             <%- include('./components/playlists',{playlist_feature: playlists}) %>
           </div>

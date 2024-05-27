@@ -124,6 +124,32 @@ img {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.card-grid.empty {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-grid.empty button {
+  border: none;
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: #139943;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  gap: 58px;
+  transition: .1s ease-in-out;
+}
+
+.card-grid.empty button:hover {
+  transition: .1s ease-in-out;
+  background: #0D6E3D;
+}
+
 .card {
   min-height: 285px;
   /* height: 295px; */
@@ -289,11 +315,11 @@ img {
   }
 }
 
-.dashboard:has(form.loading) form {
+.dashboard:has(form.loading) form.like {
   display: none;
 }
 
-form.loading{
+form.like.loading{
   display: flex !important;
 }
 
