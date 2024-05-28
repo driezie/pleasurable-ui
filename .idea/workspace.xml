@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6304664-9f9f-4ec2-a987-ce408830eb69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/OBA-logo-wit.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/daan.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/personal-page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/styles/personal-page.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/personal-page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/foot.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/foot.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/personal-page.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/personal-page.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +47,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Details-feature",
+    "git-widget-placeholder": "personal-page-redesign",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/daan/PhpstormProjects/pleasurable-ui-team-oba/public/img",
     "node.js.detected.package.eslint": "true",
@@ -70,7 +71,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-php-predefined-ba97393d7c68-b4dcf6bb9de9-com.jetbrains.php.sharedIndexes-PS-233.13135.108" />
+        <option value="bundled-php-predefined-ba97393d7c68-6f8e3395a2b4-com.jetbrains.php.sharedIndexes-PS-233.14808.18" />
       </set>
     </attachedChunks>
   </component>
@@ -90,6 +91,7 @@
       <workItem from="1715780406703" duration="1178000" />
       <workItem from="1715858474267" duration="3291000" />
       <workItem from="1716800719671" duration="1779000" />
+      <workItem from="1716905791991" duration="4095000" />
     </task>
     <servers />
   </component>
