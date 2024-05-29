@@ -196,13 +196,13 @@
                 <div class="title-content toggle-buttons">
                   <button class="storiesButton" aria-label="button stories">Stories</button>
                   <button class="playlistsButton" aria-label="button playlists"> Playlists </button>
-                  <a class="show-all" href="/all-stories">Show all</a>
+                  <a class="show-all" href="/stories">Show all </a>
                 </div>
 
                 
   
                 <section class="list-stories">
-                  <% stories.slice(0, 4).forEach(story => {%>
+                  <% stories.slice(0, 3).forEach(story => {%>
                     <article class="li-story">
                       <div>
                         <img class="img-story" src="https://fdnd-agency.directus.app/assets/<%= story.image %>" alt="story image">

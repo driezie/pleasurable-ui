@@ -120,6 +120,31 @@ app.post('/', async (req, res) => {
   });
 });
 
+
+/// Maak een GET route voor de stories
+app.get('/stories', async function (request, response) {
+  const storyAPI = `${apiUrl}/tm_story`;
+  const storyResponse = await makeFetchRequest(storyAPI, 'GET');
+  const storyData = await storyResponse.json();
+  const stories = storyData.data;
+  let filteredstories = null
+
+
+  // Controleer als er een search query in de request is
+  if (request.query.search) {
+      const searchTerm = request.query.search.toLowerCase(); // verander search query naar lowercase
+      filteredstories = stories.filter(story =>
+          story.title.toLowerCase().includes(searchTerm) || // Search bij titel
+          story.summary.toLowerCase().includes(searchTerm) // Search bij samenvatting
+      );
+      response.render('stories', { stories: filteredstories });
+  } else {
+    response.render('stories', { stories: stories });
+  }
+  // Render stories.ejs van de views map
+  
+});
+
 // Stel het poortnummer in waar express op moet gaan luisteren
 app.set('port', process.env.PORT || 8000);
 

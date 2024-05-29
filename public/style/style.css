@@ -82,6 +82,12 @@ form {
     width: 350px;
     height: 450px;
     object-fit: fill;
+    align-items: flex-end;
+    display: flex;
+}
+
+.info-content .avatar img {
+    height: fit-content;
 }
 
 
