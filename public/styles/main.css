@@ -56,7 +56,7 @@
     --primary-toggle: #3a3b3c;
     --primary-color-light: #3a3b3c;
     --toggle-color: #fff;
-    --text-color: #ccc;
+    --text-color: #fff;
   }
 
   ::selection {
@@ -74,7 +74,7 @@
 
   body {
     font-family: "Poppins", sans-serif;
-    color: var(--body-color);
+    background-color: var(--body-color);
     transition: var(--tran-05);
   }
 
