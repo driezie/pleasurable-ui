@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const playlistsButton = document.querySelector('.playlistsButton');
   const storiesContent = document.querySelector('.list-stories');
   const playlistsContent = document.querySelector('.list-playlists');
+  playlistsContent.classList.add('hidden');
 
   storiesButton.addEventListener('click', function() {
     showStories();
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     showPlaylists();
   }); 
 
-  
+
   // stories laten zien 
   function showStories() {
       storiesContent.classList.remove('hidden');
