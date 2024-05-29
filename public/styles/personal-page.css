@@ -11,7 +11,7 @@
 body {
     display: flex;
     overflow-x: hidden;
-    background-color: var(--primary-color);
+    background-color: #FF0000FF;
 }
 
 main {
@@ -30,7 +30,7 @@ main {
 .content-wrapper {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 90vw;
     margin-left: 5em;
 }
 
@@ -55,16 +55,15 @@ h1::first-line {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100vw;
     margin-top: 1em;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
+
 }
 
 .details-buttons {
     background: none;
     border: none;
     font-size: 1.5em;
+    color: var(--text-color);
     cursor: pointer;
 }
 
@@ -127,7 +126,7 @@ ul {
     scrollbar-width: auto;
     scroll-snap-type: x mandatory;
     margin-bottom: 3em;
-    width: 100%;
+    width: 100%
 }
 
 .carousel-items {
@@ -155,14 +154,14 @@ ul {
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-    background: var(--primary-color);
+    background: #FF0000FF;
     border-radius: var(--radius-small);
     width: 5em;
     cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+    background: #FF0000FF;
     width: 2em;
     border-radius: 2em;
 }
@@ -178,6 +177,39 @@ ul {
 ::-webkit-scrollbar-button {
     height: 1em;
 }
+
+/*media queries*/
+
+@media (max-width: 2000px) {
+    /* Plaats hier je CSS regels */
+    .content-wrapper {
+        width: 85vw;
+    }
+}
+
+@media (max-width: 1000px) {
+    /* Plaats hier je CSS regels */
+    .content-wrapper {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Plaats hier je CSS regels */
+    .content-wrapper {
+        width: 70vw;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    .details-buttons {
+        font-size: 1.2em;
+    }
+}
+
+
 
 
 /*ul {*/
