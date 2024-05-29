@@ -1,4 +1,6 @@
 // Importeer het npm pakket express uit de node_modules map
+
+//dit is de goede 
 import express from 'express';
 
 // Importeer de zelfgemaakte functies uit de ./helpers map
