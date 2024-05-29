@@ -236,11 +236,16 @@ img {
 
 /* Stories */
 
-.list-stories  {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: var(--border-radius-standard);
-    color: var(--lessons-dark-text-color);
+.list-stories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--border-radius-standard);
+  color: var(--lessons-dark-text-color);
+  /* overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  height: calc(3 * 6rem + 3 * var(--border-radius-standard));  */
 }
 
 
@@ -291,10 +296,6 @@ img {
   background-color:transparent;
   border:none;
 }
-
-
-/* Grid story */
-
 
 .hidden {
   display: none;
