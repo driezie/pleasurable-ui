@@ -26,18 +26,12 @@ app.get('/', async (request, response) => {
   // Haal alle 'normale' afspeellijsten op
   const playlistsAPI = `${apiUrl}/tm_playlist?fields=*.*.*.*`;
   const playlistsResponse = await makeFetchRequest(playlistsAPI, 'GET');
-  if (!playlistsResponse || typeof playlistsResponse.json !== 'function') {
-    throw new Error('Invalid response object');
-  }
   const playlistsData = await playlistsResponse.json();
   const playlists = playlistsData.data;
 
   // Haal alle gelikede afspeellijsten op
   const likedAPI = `${apiUrl}/tm_likes?filter={"user":"4"}`;
   const likedPlaylistsResponse = await makeFetchRequest(likedAPI, 'GET');
-  if (!likedPlaylistsResponse || typeof likedPlaylistsResponse.json !== 'function') {
-    throw new Error('Invalid response object');
-  }
   const likedPlaylistsData = await likedPlaylistsResponse.json();
   const likedPlaylists = likedPlaylistsData.data;
 
@@ -49,11 +43,32 @@ app.get('/', async (request, response) => {
   // Filter alleen de gelikede afspeellijsten
   const likedPlaylistsOnly = playlistsWithLikedStatus.filter(playlist => playlist.isLiked);
 
+  // Fetch likes data to sort playlists based on likes
+  const likesAPI = `${apiUrl}/tm_likes`;
+  const likesResponse = await makeFetchRequest(likesAPI, 'GET');
+  const likesData = await likesResponse.json();
+  const likes = likesData.data;
+
+  // Organiseert alle playlisten op hoeveelheid likes
+  const popularPlaylists = [...playlistsWithLikedStatus].sort((a, b) => {
+    const aLikes = likes.filter(like => like.playlist === a.id).length;
+    const bLikes = likes.filter(like => like.playlist === b.id).length;
+    return bLikes - aLikes;
+  });
+
+  // Organiseert alle playlisten op hoeveelheid stories
+  const mostStoriesPlaylists = playlistsWithLikedStatus.sort((a, b) => b.stories.length - a.stories.length)
+
+  // Organiseert de normale playlist in order van de id
+  const playlistsWithLikedStatusSorted = [...playlistsWithLikedStatus].sort((a, b) => a.id - b.id);
+
   // Rendert de homepagina met alleen de gelikede afspeellijsten
   response.render('index', {
     apiUrl: apiUrl,
-    playlists: playlistsWithLikedStatus || [],
+    playlists: playlistsWithLikedStatusSorted || [],
     liked_playlists: likedPlaylistsOnly || [],
+    popular_playlists: popularPlaylists || [],
+    most_stories_playlists: mostStoriesPlaylists || [],
   });
 });
 
@@ -86,12 +101,13 @@ app.post('/', async (req, res) => {
 
   // Filter alleen de gelikede afspeellijsten
   const likedPlaylistsOnly = playlistsWithLikedStatus.filter(playlist => playlist.isLiked);
+  
 
-  // Rendert de homepagina met alleen de gelikede afspeellijsten
-  res.render('index', {
+  response.render('index', {
     apiUrl: apiUrl,
     playlists: playlistsWithLikedStatus || [],
     liked_playlists: likedPlaylistsOnly || [],
+    popular_playlists: popularPlaylistsSorted || [],
   });
 });
 

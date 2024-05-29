@@ -65,15 +65,19 @@
     transition: .3s ease-in-out;
 }
 
+.nav-container nav .profile a svg {
+    scale: .9;
+}
+
 
 .nav-container nav .profile a:hover {
-    transition: 1s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+    transition: .3s ease-in-out;
     background: rgba(255, 255, 255, 0.30);
     box-shadow: 0px 4px 10px #00000029;
 }
 
 .nav-container nav .profile a:hover svg {
-    animation: rotatingSetting 1s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+    scale: .9;
 }
 
 .nav-container nav .buttons {
@@ -123,18 +127,3 @@
     width: 24px;
     height: 24px;
 }
-
-
-/* 
-    This is the animation for the settings icon on the top left corner of the navbar
- */
-
-@keyframes rotatingSetting {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
