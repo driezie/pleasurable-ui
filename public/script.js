@@ -19,3 +19,13 @@ modeSwitch.addEventListener("click" , () =>{
         
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.classList.add('js-enabled');
+});
+
+function grow(event) {
+    const item = event.currentTarget;
+    item.classList.toggle('active');
+}
+

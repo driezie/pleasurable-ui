@@ -1,0 +1,21 @@
+<%- include('./partials/head') %>
+<main class="favorites">
+    <article>
+    
+        <ul>
+            <% items.forEach(item => { %>
+            <li>
+                <a href="./detail/<%= item.id %> ">
+                    <h3><%= item.title %></h3>
+                    <img src="https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>" alt="<%= item.title %> Image" height="300" width="200">
+                    <p>€ <%= item.price %></p>
+                </a>       
+            </li>
+            
+            <% }); %>
+        </ul>
+      </article>
+      <button class="borrow">Lenen</button>
+    </main>
+
+<%- include('./partials/foot') %>
