@@ -11,17 +11,13 @@ const app = express();
 
 // API naar Directus
 const apiUrl = "https://fdnd-agency.directus.app/items";
+const storiesAPI = await fetchJson('https://fdnd-agency.directus.app/items/tm_story');
 
 // Stel ejs in als template engine
 // Stel de map met ejs templates in
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
 // Zorg dat werken met request data makkelijker wordt
 app.use(express.urlencoded({extended: true}))
-
-// API naar Directus
-const apiUrl = "https://fdnd-agency.directus.app/items";
-const storiesAPI = await fetchJson('https://fdnd-agency.directus.app/items/tm_story');
-
 
 // Array voor favourieten
 const playlistsWithLikedStatus = [];
