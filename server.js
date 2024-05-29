@@ -11,44 +11,11 @@ const app = express();
 
 // API naar Directus
 const apiUrl = "https://fdnd-agency.directus.app/items";
-const storiesAPI = await fetchJson('https://fdnd-agency.directus.app/items/tm_story');
 
 // Stel ejs in als template engine
 // Stel de map met ejs templates in
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
 // Zorg dat werken met request data makkelijker wordt
-app.use(express.urlencoded({extended: true}))
-
-// Array voor favourieten
-const playlistsWithLikedStatus = [];
-
-function checkIfLiked(playlist, array) {
-  // Checks if the playlist is in the liked playlists array
-  const isLiked = array.some(likedPlaylist => likedPlaylist.playlist === playlist.id);
-  // Double check if the playlist is in the liked playlists array
-  // console.log("isLiked for " + playlist.id + " is: " + isLiked);
-
-  // Adds an `isLiked` attribute to the playlist object
-  return {
-      ...playlist,
-      // Id of the isliked item
-      isLikedId: isLiked ? array.find(likedPlaylist => likedPlaylist.playlist === playlist.id).id : null,
-      isLiked: isLiked
-  };
-}
-
-let stories = storiesAPI.data;
-
-//home
-app.get('/home', function(request, response) {
-  // Render index.ejs uit de views map
-  response.render('home', {
- 
-    stories: stories
-
-    });
-  })
-
 app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static('public'));
@@ -58,14 +25,11 @@ app.get('/', async (request, response) => {
 
   // Haal alle 'normale' afspeellijsten op
   const playlistsAPI = `${apiUrl}/tm_playlist?fields=*.*.*.*`;
-
   const playlistsResponse = await makeFetchRequest(playlistsAPI, 'GET');
   const playlistsData = await playlistsResponse.json();
   const playlists = playlistsData.data;
 
-
-
-  // Fetcht alle gelikede playlists van de gebruiker
+  // Haal alle gelikede afspeellijsten op
   const likedAPI = `${apiUrl}/tm_likes?filter={"user":"4"}`;
   const likedPlaylistsResponse = await makeFetchRequest(likedAPI, 'GET');
   const likedPlaylistsData = await likedPlaylistsResponse.json();
@@ -101,17 +65,14 @@ app.get('/', async (request, response) => {
   // Rendert de homepagina met alleen de gelikede afspeellijsten
   response.render('index', {
     apiUrl: apiUrl,
-      stories: stories,
     playlists: playlistsWithLikedStatusSorted || [],
     liked_playlists: likedPlaylistsOnly || [],
-      
     popular_playlists: popularPlaylists || [],
     most_stories_playlists: mostStoriesPlaylists || [],
   });
-
 });
 
-// POST-functie voor het leuk vinden van een afspeellijst
+
 app.post('/', async (req, res) => {
   // Ontvang het item id
   const itemId = req.body.itemId;
