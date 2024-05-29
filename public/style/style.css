@@ -1,0 +1,529 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  /* color */
+  --lessons-h1-color: #FFFFFF;
+  --lessons-listening-box-color:#139943;
+  --lessons-story-box:#FFFFFF;
+  --lessons-dark-text-color:#000000;
+
+
+  /* paddding/layout */
+  --lessons-story-box-width:22.9rem;;
+  --border-radius-standard:0.5rem;
+}
+
+
+
+body {
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  background-image: url(/images/background/background.png), linear-gradient(180deg, #3C6FA9 0%, #97b7d7 100%);
+  background-size: cover, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, bottom;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+.front-top-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(/images/background/ground.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
+a {
+    color: currentColor;
+    text-decoration: none;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+form {
+  margin: 0;
+}
+
+.container {
+  align-items: flex-end;
+  display: flex;
+  margin-top: 70px;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 90rem;
+  padding: 0 1rem;
+  padding: 34px 1rem;
+  height: calc(100vh - 70px);
+}
+
+.info-content {
+    margin-right: 100px;
+}
+
+.info-content .avatar {
+    width: 350px;
+    height: 450px;
+    object-fit: fill;
+}
+
+
+.dashboard {
+    width: 765px;
+    background-color: rgba(159, 159, 159, 0.2);
+    box-shadow: 0px 2px 10px #0000000f;
+    backdrop-filter: blur(3px);
+    border-radius: 20px;
+    padding: 30px 15px 15px 25px;
+    width: 100%;
+
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100% - 70px);
+    height: 100%;
+    overflow: hidden;
+}
+
+.dashboard .content-title {
+    margin-bottom: 20px;
+}
+
+.dashboard .content-title h1 {
+    font-size: 35px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.dashboard .content-title h2 {
+    font-size: 22px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.dashboard .content {
+    padding-right: 15px;
+    overflow: visible;
+    overflow-y: scroll;    
+}
+
+article .title-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+article .title-content h2 {
+  margin: 0;
+}
+
+article .title-content.toggle-buttons{
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+article .title-content a:hover{
+  text-decoration: underline;
+}
+
+.dashboard .content-list {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard .content-list .top-content {
+  display: flex;
+  gap: 20px;
+}
+
+.dashboard .content-list .top-content article {
+  flex: 1;
+}
+
+.content-list .liked_playlists {
+  position: relative;
+}
+
+
+.content-list .liked_playlists .card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.content-list .playlists .card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 100px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #139943;
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0D6E3D;
+}
+
+.content-list .liked_playlists .card-grid.empty {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  height: 285px;
+}
+
+.card-grid.empty button {
+  border: none;
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: #139943;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  gap: 58px;
+  transition: .1s ease-in-out;
+}
+
+.card-grid.empty button:hover {
+  transition: .1s ease-in-out;
+  background: #0D6E3D;
+}
+
+.card {
+  min-height: 285px;
+  max-width: 210px;
+  /* height: 295px; */
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.card picture.logo {
+  width: 100%;
+  height: 100%;
+  background-color: #5AB4F5;
+  max-height: 164px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.card img.logo, source {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+  position: relative;
+}
+
+.card .text-content {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card .text-content .title-content {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card .text-content .title-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.card .text-content .title-content p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.actions .play {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.card .actions .play img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+  
+.actions .additional-actions {
+  display: flex;
+  align-items: center;
+}
+
+.actions .additional-actions a {
+  display: flex;
+  margin: 0 5px;
+}
+
+.actions .additional-actions a img {
+  width: 20px;
+  height: 20px;
+}
+
+.actions .additional-actions button {
+  padding: .7rem;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+
+  
+  
+
+
+.card.card-playlist:hover .play img {
+  scale: 1.05;
+  transition: all 0.3s;
+}
+
+.card.card-playlist .play img {
+  transition: all 0.3s;
+}
+
+
+/* Media 1200 */
+
+@media (max-width: 1200px) {
+  .info-content {
+      display: none;
+  }
+
+  .nav-container nav .buttons {
+    display: none;
+  }
+
+}
+
+
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+      background-image: none;
+      background: linear-gradient(180deg, #3C6FA9 0%, #052242 100%);
+  }
+  .container {
+      height: auto;
+      padding: 0;
+  }
+
+  .dashboard {
+    background-color: transparent;
+    padding: 20px;
+  }
+
+  .card-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard .content-list .top-content {
+    flex-direction: column;
+  }
+
+  .content-list .liked_playlists .card-grid {
+    width: fit-content;
+  }
+
+  .content-list .playlists .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 568px) {
+  .card-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .content-list .playlists .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .front-top-layer {
+    display: none;
+  }
+}
+
+.dashboard:has(form.loading) form.like {
+  display: none;
+}
+
+form.like.loading{
+  display: flex !important;
+}
+
+form.like.loading button {
+  animation: like-button-animation .7s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+form.loading button {
+  cursor: wait !important;
+}
+
+@keyframes like-button-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+
+/* Stories */
+
+/* Stories */
+
+.list-stories  {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--border-radius-standard);
+  color: var(--lessons-dark-text-color);
+}
+
+.list-playlists .card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--border-radius-standard);
+  color: var(--lessons-dark-text-color);
+}
+
+
+.li-story {
+background-color: var(--lessons-story-box);
+display: flex;
+padding:0.5rem;
+align-items:center;
+border-radius: var(--border-radius-standard);
+}
+
+.text-content-story {
+  flex: 1;
+display:flex;
+flex-direction: column;
+margin-left:0.5rem;
+
+}
+
+.img-story {
+height: 5rem;
+width: 5rem;
+object-fit: cover;
+
+}
+
+.title-story{
+margin:0;
+}
+
+.li-story:hover {
+background-color:#ededf3db;
+cursor:pointer;
+
+
+}
+
+.summaryStory {
+font-size: 0.9rem;
+width: 20em;
+margin:0
+}
+
+.interactions-story {
+}
+
+.btn-add {
+  background-color:transparent;
+  border:none;
+}
+
+
+/* Grid story */
+
+
+.hidden {
+  display: none;
+}
+/* buttons */
+.storiesButton, .playlistsButton  {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  background-color:#325072;
+  color:white;
+  transition: transform 0.3s ease;
+}
+
+
+.playlistsButton:hover, .storiesButton:hover, .active {
+cursor: pointer;
+background-color: white;
+color:#325072 ;
+transform: scale(1.06);
+}
