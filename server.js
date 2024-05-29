@@ -34,6 +34,84 @@ app.get('/', function (request, response) {
     })
 })
 
+app.set('port', process.env.PORT || 8001)
+
+// Start express op, haal daarbij het zojuist ingestelde poortnummer op
+app.listen(app.get('port'), function () {
+  // Toon een bericht in de console en geef het poortnummer door
+  console.log(`Application started on http://localhost:${app.get('port')}`)
+})
+
+
+
+// Route voor individuele overview pagina.
+
+app.get('/user-overview/:id', function(request, response) {
+    const userId = request.params.id;
+    fetchJson(apiProfile + `/${userId}?fields=*,linked_item.oba_item_id.*`).then((userData) => {
+        response.render('user-overview', { data: userData.data });
+    });
+});
+
+
+// Route voor overview pagina voor de familie
+
+app.get('/user-all', function(request, response) {
+    fetchJson(apiUrl + `/oba_profile?fields=id`).then((userData) => {
+        const ids = userData.data.map(item => item.id);
+        const users = [];
+        ids.forEach(id => {
+            users.push(fetchJson(apiProfile + `/${id}?fields=*,linked_item.oba_item_id.*`));
+        });
+        
+
+        Promise.all(users)
+            .then(linkedItemsArray => {
+                linkedItemsArray.forEach(linkedItems => {
+                });
+                response.render('user-all', { data: linkedItemsArray });
+            })      
+    })
+});
+
+app.get('/detail/:id', function(request, response){
+    // console.log(request.params)
+    const itemId = request.params.id;
+
+     // Haal de details op van het item met het opgegeven ID
+     fetchJson(apiUrl + '/oba_item/' + itemId).then((items) => {
+        // Render de detailpagina en geef de nodige data mee
+        response.render('detail', {
+            items: items.data,
+            id: itemId,
+        });
+    });
+});
+
+app.post('/detail/:id', function(request, response){
+
+    const itemId = request.params.id;
+  
+    fetch(`${apiUrl}/oba_bookmarks/` , {
+        method: 'POST',
+        body: JSON.stringify({
+          item: request.params.id
+        }),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        }
+      }).then((postResponse) => {
+        // Redirect naar de persoon pagina
+        if (request.body.enhanced) {
+            response.render('detail', {added:true});
+          } else {
+          response.redirect(303, '/detail/' + itemId + '?added=true')
+      }
+    })
+  });
+
+// Stel het poortnummer in waar express op moet gaan luisteren
+
 //Profile Page
 app.get('/personal-page/:id', function (request, response) {
     // Maak twee afzonderlijke fetch-aanroepen naar families en profiles
@@ -79,42 +157,4 @@ app.get('/favorites', function(request, response) {
             }
     })
 })// Stel het poortnummer in waar express op moet gaan luisteren
-app.set('port', process.env.PORT || 8001)
 
-// Start express op, haal daarbij het zojuist ingestelde poortnummer op
-app.listen(app.get('port'), function () {
-  // Toon een bericht in de console en geef het poortnummer door
-  console.log(`Application started on http://localhost:${app.get('port')}`)
-})
-
-
-
-// Route voor individuele overview pagina.
-
-app.get('/user-overview/:id', function(request, response) {
-    const userId = request.params.id;
-    fetchJson(apiProfile + `/${userId}?fields=*,linked_item.oba_item_id.*`).then((userData) => {
-        response.render('user-overview', { data: userData.data });
-    });
-});
-
-
-// Route voor overview pagina voor de familie
-
-app.get('/user-all', function(request, response) {
-    fetchJson(apiUrl + `/oba_profile?fields=id`).then((userData) => {
-        const ids = userData.data.map(item => item.id);
-        const users = [];
-        ids.forEach(id => {
-            users.push(fetchJson(apiProfile + `/${id}?fields=*,linked_item.oba_item_id.*`));
-        });
-        
-
-        Promise.all(users)
-            .then(linkedItemsArray => {
-                linkedItemsArray.forEach(linkedItems => {
-                });
-                response.render('user-all', { data: linkedItemsArray });
-            })      
-    })
-});
