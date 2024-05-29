@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 :root {
     /* color */
     --lessons-h1-color: #FFFFFF;
@@ -16,17 +15,30 @@
 }
 
 body {
-    margin: 0;
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  background-image: url(/images/background/background.png), linear-gradient(180deg, #3C6FA9 0%, #97b7d7 100%);
+  background-size: cover, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, bottom;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
 
-    overflow: hidden;
-    height: 100vh;
-    background-image: url("/images/background-mountains.png"), linear-gradient(180deg, #3C6FA9 0%, #97b7d7 100%);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
-    color: white;
-    font-family: "Poppins", sans-serif;
-    min-height: 100vh;
+.front-top-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(/images/background/ground.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
 }
 
 a {
@@ -41,6 +53,10 @@ a {
 img {
     max-width: 100%;
     height: auto;
+}
+
+form {
+  margin: 0;
 }
 
 .container {
@@ -72,7 +88,7 @@ img {
     box-shadow: 0px 2px 10px #0000000f;
     backdrop-filter: blur(3px);
     border-radius: 20px;
-    padding: 30px 50px;
+    padding: 30px 15px 15px 25px;
     width: 100%;
 
     margin: 0 auto;
@@ -88,23 +104,63 @@ img {
 }
 
 .dashboard .content-title h1 {
-    font-size: 2rem;
+    font-size: 35px;
     font-weight: 600;
     margin: 0;
 }
 
 .dashboard .content-title h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 300;
     margin: 0;
 }
 
 .dashboard .content {
-    overflow-y: scroll;
+    padding-right: 15px;
+    overflow: visible;
+    overflow-y: scroll;    
 }
 
-.dashboard .content > div {
-    margin-right: 10px;
+article .title-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article .title-content a:hover{
+  text-decoration: underline;
+}
+
+.dashboard .content-list {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard .content-list .top-content {
+  display: flex;
+  gap: 20px;
+}
+
+.dashboard .content-list .top-content article {
+  flex: 1;
+}
+
+.content-list .liked_playlists {
+  position: relative;
+}
+
+
+.content-list .liked_playlists .card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.content-list .playlists .card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
 
@@ -129,208 +185,135 @@ img {
   background: #0D6E3D;
 }
 
+.content-list .liked_playlists .card-grid.empty {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  height: 285px;
+}
 
-.card-grid {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(3, 1fr);
+.card-grid.empty button {
+  border: none;
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: #139943;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  gap: 58px;
+  transition: .1s ease-in-out;
+}
+
+.card-grid.empty button:hover {
+  transition: .1s ease-in-out;
+  background: #0D6E3D;
 }
 
 .card {
   min-height: 285px;
+  max-width: 210px;
   /* height: 295px; */
   display: flex;
   flex-direction: column;
-  max-width: 100%;
   font-family: "Poppins", sans-serif;
   color: black;
   padding: 8px;
   border-radius: 8px;
   background-color: #fff;
+}
 
-  picture {
-    width: 100%;
-    height: 100%;
-    background-color: #5AB4F5;
-    max-height: 164px;
-    overflow: hidden;
-    border-radius: 4px;
-  }
+.card picture.logo {
+  width: 100%;
+  height: 100%;
+  background-color: #5AB4F5;
+  max-height: 164px;
+  overflow: hidden;
+  border-radius: 4px;
+}
 
-  img.logo, source {
-    /* center */
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    object-fit: cover;
-    position: relative;
-  }
+.card img.logo, source {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+  position: relative;
+}
 
-  .text-content {
-    flex-grow: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.card .text-content {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-    .title-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-
-      h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin: 10px 0;
-      }
-    }
-
-    p {
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-    }
-  }
-  .actions {
-    display: flex;
+.card .text-content .title-content {
+  display: flex;
     justify-content: space-between;
     align-items: center;
-    .play {
-      gap: 5px;
-      display: flex;
-      align-items: center;
-      
-
-      img {
-        width: 40px;
-        height: 40px;
-        margin-right: 5px;
-      }
-    }
-
-    .additional-actions {
-      display: flex;
-      align-items: center;
-
-      a {
-        display: flex;
-        margin: 0 5px;
-
-        img {
-          width: 20px;
-          height: 20px;
-        }
-      }
-
-      button {
-        display: flex;
-        cursor: pointer;
-        border: none;
-        background: transparent;
-      }
-    }
-  }
+    margin-bottom: 10px;
 }
 
-/* Stories */
+.card .text-content .title-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px 0;
+}
 
-.list-stories {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--border-radius-standard);
-  color: var(--lessons-dark-text-color);
-  /* overflow: hidden;
+.card .text-content .title-content p {
+  overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  height: calc(3 * 6rem + 3 * var(--border-radius-standard));  */
+  -webkit-line-clamp: 2;
 }
 
 
-.li-story {
-  background-color: var(--lessons-story-box);
+
+.card .actions {
   display: flex;
-  padding:0.5rem;
-  align-items:center;
-  width:24rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.card .actions .play {
+  gap: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.card .actions .play img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
   
+.card .actions .additional-actions {
+  display: flex;
+  align-items: center;
 }
 
-.text-content-story {
-  display:flex;
-  flex-direction: column;
-  margin-left:0.5rem;
-  
+.card .actions .additional-actions a {
+  display: flex;
+  margin: 0 5px;
 }
 
-.img-story {
-  height: 5rem;
-  width: 5rem;
-  object-fit: cover;
-  
+.card .actions .additional-actions a img {
+  width: 20px;
+  height: 20px;
 }
 
-.title-story{
-  margin:0;
-}
-
-.li-story:hover {
-  background-color:#ededf3db;
-  cursor:pointer;
-
-  
-}
-
-.summaryStory {
-  font-size: 0.9rem;
-  width: 20em;
-  margin:0
-}
-
-.interactions-story {
-}
-
-.btn-add {
-  background-color:transparent;
-  border:none;
-}
-
-.hidden {
-  display: none;
-}
-/* buttons */
-.storiesButton, .playlistsButton  {
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  border: none;
-  background-color:#325072;
-  color:white;
-   transition: transform 0.3s ease;
-}
-.placeholder-buttons {
-  margin:0.5rem;
-}
-
-.playlistsButton:hover, .storiesButton:hover, .active {
+.card .actions .additional-actions button {
+  padding: .7rem;
+  display: flex;
   cursor: pointer;
-  background-color: white;
-  color:#325072 ;
-  transform: scale(1.06);
+  border: none;
+  background: transparent;
 }
 
-.heart-button:hover {
-  animation: like 0.5s forwards;
-
-}
-
-/* keyframes */
-@-webkit-keyframes like {
-  0%   { transform: scale(1); }
-  90%   { transform: scale(1.2); }
-  100% { transform: scale(1.1); }
-}
 
 
 /* Media 1200 */
@@ -382,12 +365,59 @@ img {
     max-width:23rem;
     
   }
+  .dashboard .content-list .top-content {
+    flex-direction: column;
+  }
+
+  .content-list .liked_playlists .card-grid {
+    width: fit-content;
+  }
+
+  .content-list .playlists .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
+
 
 @media (max-width: 468px) {
   .card-grid {
-
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .content-list .playlists .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .front-top-layer {
+    display: none;
+  }
+}
+
+.dashboard:has(form.loading) form.like {
+  display: none;
+}
+
+form.like.loading{
+  display: flex !important;
+}
+
+form.like.loading button {
+  animation: like-button-animation .7s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+form.loading button {
+  cursor: wait !important;
+}
+
+@keyframes like-button-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
   }
   
 }
