@@ -42,7 +42,8 @@
                 <% } %>
             </article>            
             <ul class="hidden">
-                <a href="/user-overview/<%= user.data.id %>">Bekijk details</a>
+                <a href="/user-overview/<%= user.data.id %>">Geleende items</a>
+                <a href="/personal-page/:<%= user.data.id %>">Persoonlijke pagina</a>
 
                 <% 
                 if (user.data.linked_item && user.data.linked_item.length > 0) {

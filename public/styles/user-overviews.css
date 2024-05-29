@@ -92,6 +92,7 @@
     justify-content: center;
     border-radius: var(--radius-small);
     font-size: 1.2rem;
+    margin-bottom: var(--small);
 }
 
 #item-list {
