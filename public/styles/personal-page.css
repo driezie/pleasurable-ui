@@ -1,13 +1,9 @@
-/*.banner {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: space-between;*/
-/*    background-color: var(--primary-color);*/
-
-/*    margin: 0;*/
-/*    padding: 0;*/
-
-/*}*/
+.banner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 body {
     display: flex;
     overflow-x: hidden;
@@ -40,11 +36,10 @@ main {
 
 .profile-picture {
     position: absolute;
-    bottom: 100%; /* Plaats het element verticaal in het midden */
+    bottom: 100%;
     top: 0.01%;
-    /* Plaats het element horizontaal in het midden */
-    transform: translate(6%, -50%); /* Verschuif het element terug met 50% van zijn eigen breedte en hoogte */
-    border-radius: 100%; /* Maak de afbeelding rond */
+    transform: translate(235%, -50%);
+    border-radius: 100%;
 }
 
 h1::first-line {
@@ -104,6 +99,10 @@ h1::first-line {
     display: none;
 }
 
+.favorites-details-active {
+    display: block;
+}
+
 .borrowed-books-details {
     display: none;
 }
@@ -118,7 +117,7 @@ ul {
 
 .carousel {
     display: flex;
-    overflow-x: auto;
+    overflow-x: scroll;
     scrollbar-width: auto;
     scroll-snap-type: x mandatory;
     margin-bottom: 3em;

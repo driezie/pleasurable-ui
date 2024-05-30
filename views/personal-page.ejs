@@ -12,10 +12,9 @@
     <div class="for-you-details">
         <button class="details-close-buttons" id="forYouDetailsCloseButton">Sluiten</button>
         <section class="details-item-container">
-            <% apiItems.forEach(function(apiItem) { %>
-
-                <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= apiItem.afbeelding %>'
-                     alt="<%= apiItem.title %>" width="200" height="300">
+            <% apiItems.forEach(function(item) { %>
+                <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>'
+                     alt="<%= item.title %>" width="200" height="300">
 
             <% }) %>
         </section>
@@ -25,11 +24,9 @@
     <div class="favorites-details">
         <button class="details-close-buttons" id="favoritesCloseButton">Sluiten</button>
         <section class="details-item-container">
-            <% apiItems.forEach(function(apiItem) { %>
-
-                <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= apiItem.afbeelding %>'
-                     alt="<%= apiItem.title %>" width="200" height="300">
-
+            <% bookmarkedItems.forEach(item => { %>
+                    <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%- item.afbeelding %>'
+                         alt="<%- item.title %>" width="200" height="300">
             <% }) %>
         </section>
     </div>
@@ -38,10 +35,10 @@
     <div class="borrowed-books-details">
         <button class="details-close-buttons" id="borrowedBooksCloseButton">Sluiten</button>
         <section class="details-item-container">
-            <% apiItems.forEach(function(apiItem) { %>
+            <% apiItems.forEach(function(item) { %>
 
-                <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= apiItem.afbeelding %>'
-                     alt="<%= apiItem.title %>" width="200" height="300">
+                <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>'
+                     alt="<%= item.title %>" width="200" height="300">
 
             <% }) %>
         </section>
@@ -55,11 +52,11 @@
             <button class="details-buttons" id="forYoudetailsButton">Alles Weergeven</button>
         </div>
         <ul class="carousel">
-            <% apiItems.forEach(function(apiItem) { %>
+            <% apiItems.slice(0,10).forEach(function(item) { %>
                 <li class="carousel-items">
                     <img class="bookCarouselImg"
-                         src='https://fdnd-agency.directus.app/assets/<%= apiItem.afbeelding %>'
-                         alt="<%= apiItem.title %>" width="200" height="300">
+                         src='https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>'
+                         alt="<%= item.title %>" width="200" height="300">
                 </li>
             <% }) %>
         </ul>
@@ -71,11 +68,11 @@
             <button class="details-buttons" id="favoritesButton">Alles Weergeven</button>
         </div>
         <ul class="carousel">
-            <% apiItems.forEach(function(apiItem) { %>
-                <li class="carousel-items">
-                    <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= apiItem.afbeelding %>'
-                         alt="<%= apiItem.title %>" width="200" height="300">
-                </li>
+            <% bookmarkedItems.slice(0,10).forEach(item => { %>
+            <li class="carousel-items">
+                <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%- item.afbeelding %>'
+                     alt="<%- item.title %>" width="200" height="300">
+            </li>
             <% }) %>
         </ul>
     </section>
@@ -86,14 +83,19 @@
             <button class="details-buttons" id="borrowedBooksButton">Alles Weergeven</button>
         </div>
         <ul class="carousel">
-            <% apiItems.forEach(function(apiItem) { %>
+            <% apiItems.slice(0,10).forEach(function(item) { %>
                 <li class="carousel-items">
-                    <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= apiItem.afbeelding %>'
-                         alt="<%= apiItem.title %>" width="200" height="300">
+                    <img class="bookCarouselImg" src='https://fdnd-agency.directus.app/assets/<%= item.afbeelding %>'
+                         alt="<%= item.title %>" width="200" height="300">
                 </li>
             <% }) %>
         </ul>
     </section>
+
+
+
+
+
 
 </section>
 <script type="module" src="/scripts/personal-page.js" defer></script>

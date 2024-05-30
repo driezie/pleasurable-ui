@@ -55,7 +55,7 @@ favoritesDetailsButton.addEventListener('click', () => {
 
     // Reverse de animatie op de timeline met .reverse
     carouselTimeline.reverse().eventCallback("onReverseComplete", () => {
-        detailsFavoritesActive()
+        detailsFavoritesActive();
         activeContentWrapper();
     });
 });
