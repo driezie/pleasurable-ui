@@ -104,10 +104,6 @@ h1::first-line {
     display: none;
 }
 
-.favorites-details-active {
-    display: block;
-}
-
 .borrowed-books-details {
     display: none;
 }

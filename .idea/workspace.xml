@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c6304664-9f9f-4ec2-a987-ce408830eb69" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/personal-page.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/personal-page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/foot.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/foot.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/daan-animations.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/personal-page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/personal-page.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/personal-page.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +45,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "personal-page-redesign",
+    "git-widget-placeholder": "Profile-picture-/-favorite-display",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/daan/PhpstormProjects/pleasurable-ui-team-oba/public/img",
     "node.js.detected.package.eslint": "true",
@@ -63,8 +61,9 @@
       <recent name="C:\Users\daan\PhpstormProjects\pleasurable-ui-team-oba\public\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\daan\Documents\GitHub\pleasurable-ui-team-oba\public\img" />
+      <recent name="C:\Users\daan\PhpstormProjects\pleasurable-ui-team-oba\public\scripts" />
       <recent name="C:\Users\daan\PhpstormProjects\pleasurable-ui-team-oba\public" />
+      <recent name="C:\Users\daan\Documents\GitHub\pleasurable-ui-team-oba\public\img" />
       <recent name="C:\Users\daan\PhpstormProjects\pleasurable-ui-team-oba\public\img" />
     </key>
   </component>
