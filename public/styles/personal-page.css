@@ -1,8 +1,12 @@
 .banner {
+    margin-left: 5em;
+    padding-top: 2rem;
+    /* min-height: 190px; */
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 body {
     display: flex;
@@ -37,8 +41,7 @@ main {
 .profile-picture {
     position: absolute;
     bottom: 100%;
-    top: 0.01%;
-    transform: translate(235%, -50%);
+    top: -5rem;
     border-radius: 100%;
 }
 
