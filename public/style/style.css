@@ -1,18 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-:root {
-    /* color */
-    --lessons-h1-color: #FFFFFF;
-    --lessons-listening-box-color:#139943;
-    --lessons-story-box:#FFFFFF;
-    --lessons-dark-text-color:#000000;
-
-  
-    /* paddding/layout */
-    --lessons-story-box-width:22.9rem;;
-    --border-radius-standard:0.5rem;
-}
 
 body {
   margin: 0;
@@ -315,6 +303,19 @@ article .title-content a:hover{
 }
 
 
+  
+  
+
+
+.card.card-playlist:hover .play img {
+  scale: 1.05;
+  transition: all 0.3s;
+}
+
+.card.card-playlist .play img {
+  transition: all 0.3s;
+}
+
 
 /* Media 1200 */
 
@@ -326,7 +327,6 @@ article .title-content a:hover{
   .nav-container nav .buttons {
     display: none;
   }
-  
 
 }
 
@@ -352,19 +352,7 @@ article .title-content a:hover{
     gap: 12px;
     grid-template-columns: repeat(2, 1fr);
   }
-  
 
-.dashboard .content {
-    overflow-y: auto;
-}
-
-}
-@media (min-width: 768px) {
-  .list-stories  {
-    grid-template-columns: repeat(2, 2fr);
-    max-width:23rem;
-    
-  }
   .dashboard .content-list .top-content {
     flex-direction: column;
   }
@@ -378,8 +366,7 @@ article .title-content a:hover{
   }
 }
 
-
-@media (max-width: 468px) {
+@media (max-width: 568px) {
   .card-grid {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -419,5 +406,4 @@ form.loading button {
   100% {
     transform: scale(1);
   }
-  
 }
